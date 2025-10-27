@@ -1,0 +1,56 @@
+body {
+    background: oklch(0.1743 0.0227 283.7998);
+    margin: 0;
+    padding: 0;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+}
+
+.card {
+    height: 400px;
+    aspect-ratio: 1/1;
+    background: oklch(0.2284 0.0384 282.9324);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card::before,
+.card::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(
+        from var(--angle) at center,
+        red,
+        purple,
+        blue,
+        orange,
+        red
+    );
+    position: absolute;
+    z-index: -2;
+    border-radius: inherit;
+    padding: 2px;
+    animation: rotate 4s linear infinite;
+}
+
+.card::after {
+    filter: blur(8px);
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
